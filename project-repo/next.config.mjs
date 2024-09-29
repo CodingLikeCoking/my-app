@@ -2,12 +2,11 @@ const isProd = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export', // This enables static export
-    basePath: isProd ? '/my-app' : '',
-    assetPrefix: isProd ? '/my-app/' : '',
+    output: 'export',
     images: {
-        unoptimized: true,  // Disable Image Optimization for static export
+        unoptimized: true,
     },
 };
 
 export default nextConfig;
+
