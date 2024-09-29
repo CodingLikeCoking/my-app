@@ -5,6 +5,9 @@ const nextConfig = {
     output: 'export', // This enables static export
     basePath: isProd ? '/my-app' : '',
     assetPrefix: isProd ? '/my-app/' : '',
+    images: {
+        unoptimized: true,  // Disable Image Optimization for static export
+    },
 };
 
 export default nextConfig;
