@@ -46,14 +46,15 @@ const geocode = async (query: string): Promise<LatLngExpression> => {
 // Extract SpotCard component for popular spots
 const SpotCard = ({ name, image }: { name: string, image: string }) => (
   <div className="flex flex-col items-center">
-    <Image
-      src={image}
-      alt={name}
-      width={100}
-      height={100}
-      className="rounded-full"
-      loading="lazy" // Lazy loading for optimization
-    />
+    <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
+      <Image
+        src={image}
+        alt={name}
+        width={100}
+        height={100}
+        className="object-contain"
+      />
+    </div>
     <p className="mt-2 text-center text-gray-300">{name}</p>
   </div>
 );
@@ -241,7 +242,7 @@ export function CheckInFirstComponent() {
       <main className="flex-grow">
         <div className="bg-gray-800 py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <form onSubmit={handleSearch} className="flex items-center">
+            <form onSubmit={(e) => { e.preventDefault(); handleSearch(searchQuery); }} className="flex items-center">
               <Input
                 type="text"
                 placeholder="搜尋附近的活動或聚會..."
@@ -281,18 +282,7 @@ export function CheckInFirstComponent() {
             <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">熱門聚會活動</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
               {popularSpots.map((spot, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
-                    <Image
-                      src={spot.image}
-                      alt={spot.name}
-                      width={100}
-                      height={100}
-                      className="object-contain"  // Change to object-contain
-                    />
-                  </div>
-                  <p className="mt-2 text-center text-gray-300">{spot.name}</p>
-                </div>
+                <SpotCard key={index} name={spot.name} image={spot.image} />
               ))}
             </div>
           </div>
@@ -305,7 +295,8 @@ export function CheckInFirstComponent() {
               <TabsList className="grid w-full grid-cols-6 mb-4 bg-gray-800">
                 <TabsTrigger value="latest" className="data-[state=active]:bg-gray-700">最新</TabsTrigger>
                 <TabsTrigger value="popular" className="data-[state=active]:bg-gray-700">熱門</TabsTrigger>
-                <TabsTrigger value="private" className="data-[state=active]:bg-gray-700">私密</TabsTrigger>
+                <TabsTrigger value="private" className="data-[state=active]:bg-gray-700">私密</Tab
+sTrigger>
                 <TabsTrigger value="friends" className="data-[state=active]:bg-gray-700">好友</TabsTrigger>
                 <TabsTrigger value="following" className="data-[state=active]:bg-gray-700">追蹤</TabsTrigger>
                 <TabsTrigger value="saved" className="data-[state=active]:bg-gray-700">收藏</TabsTrigger>
@@ -313,35 +304,7 @@ export function CheckInFirstComponent() {
               <TabsContent value="latest">
                 <div className="space-y-6">
                   {posts.map((post) => (
-                    <div key={post.id} className="bg-gray-800 rounded-lg shadow-md p-4">
-                      <div className="flex items-center mb-2">
-                        <Image
-                          src={post.user.avatar}
-                          alt={post.user.name}
-                          width={40}
-                          height={40}
-                          className="rounded-full mr-2"
-                        />
-                        <div>
-                          <p className="font-semibold text-gray-100">{post.user.name}</p>
-                          <p className="text-sm text-gray-400">{post.timestamp}</p>
-                        </div>
-                      </div>
-                      <p className="mb-2 text-gray-300">{post.content}</p>
-                      <Image
-                        src={post.image}
-                        alt="Post image"
-                        width={200}
-                        height={200}
-                        className="rounded-lg mb-2"
-                      />
-                      <div className="flex items-center text-sm text-gray-400">
-                        <ThumbsUp className="w-4 h-4 mr-1" />
-                        <span className="mr-4">{post.recommendations} 推薦</span>
-                        <MessageSquare className="w-4 h-4 mr-1" />
-                        <span>{post.comments} 留言</span>
-                      </div>
-                    </div>
+                    <PostCard key={post.id} post={post} />
                   ))}
                 </div>
                 <div className="mt-6 flex justify-center">

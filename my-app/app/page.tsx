@@ -1,5 +1,5 @@
-import { EatgetherComponent } from "@/components/eatgether"
+import { CheckInFirstComponent } from "@/components/check-in-first"
 
 export default function Page() {
-  return <EatgetherComponent />
+  return <CheckInFirstComponent />
 }
