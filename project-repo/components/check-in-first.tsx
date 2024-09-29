@@ -144,16 +144,16 @@ export function CheckInFirstComponent() {
   const posts = [
     {
       id: 1,
-      user: { name: 'Alex', avatar: '/placeholder.svg?height=40&width=40' },
+      user: { name: 'Alex', avatar: '/images/user.png' },
       timestamp: '2024-09-29 16:06',
       content: '今晚在旺角有超棒的派對房間活動！有人想一起來嗎？音樂、遊戲、小吃應有盡有...',
-      image: '/placeholder.svg?height=200&width=200',
+      image: '/images/partyroom_use.jpg',
       recommendations: 15,
       comments: 7,
     },
     {
       id: 2,
-      user: { name: 'Sarah', avatar: '/placeholder.svg?height=40&width=40' },
+      user: { name: 'Sarah', avatar: '/images/user.png' },
       timestamp: '2024-09-29 15:44',
       content: '週末在維多利亞公園有網球聚會，歡迎各位球友來切磋球技！初學者也可以來學習哦～',
       image: '/placeholder.svg?height=200&width=200',
@@ -162,7 +162,7 @@ export function CheckInFirstComponent() {
     },
     {
       id: 3,
-      user: { name: 'Jason', avatar: '/placeholder.svg?height=40&width=40' },
+      user: { name: 'Jason', avatar: '/images/user.png' },
       timestamp: '2024-09-29 15:31',
       content: '尖沙咀新開了一家超讚的劇本殺店！昨晚去玩了《無間道》主題，真的很刺激！推薦給大家～',
       image: '/placeholder.svg?height=200&width=200',
@@ -178,29 +178,19 @@ export function CheckInFirstComponent() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0">
-                <img className="h-8 w-auto" src="/placeholder.svg?height=32&width=32" alt="Check-in First" />
+                <img className="h-10 w-auto" src="/images/logo.jpg" alt="Check-in First" />
               </Link>
-              <div className="hidden md:block ml-10 flex items-baseline space-x-4">
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="找聚會 派對、運動、桌遊..."
-                    className="w-64 pl-10 bg-gray-700 text-gray-100 border-gray-600"
-                  />
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                </div>
-              </div>
             </div>
             <nav className="hidden md:flex space-x-4">
-              <Link href="#" className="text-gray-300 hover:text-orange-500">聚會活動</Link>
-              <Link href="#" className="text-gray-300 hover:text-orange-500">貼文</Link>
+              <Link href="#" className="text-gray-300 hover:text-orange-500">優惠活動</Link>
+              <Link href="#" className="text-gray-300 hover:text-orange-500">我的日記</Link>
               <div className="relative group">
                 <Link href="#" className="text-gray-300 hover:text-orange-500 flex items-center">
-                  新手上路
+                  我的技能樹
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </Link>
               </div>
-              <Link href="#" className="text-gray-300 hover:text-orange-500">交友見證</Link>
+              <Link href="#" className="text-gray-300 hover:text-orange-500">聚會活動</Link>
               <div className="relative group">
                 <Link href="#" className="text-gray-300 hover:text-orange-500 flex items-center">
                   關於我們
@@ -226,13 +216,13 @@ export function CheckInFirstComponent() {
           <nav className="flex flex-col space-y-2">
             <Input
               type="text"
-              placeholder="找聚會 派對、運動、桌遊..."
+              placeholder="搜尋"
               className="mb-2 bg-gray-700 text-gray-100 border-gray-600"
             />
+            <Link href="#" className="text-gray-300 hover:text-orange-500">優惠活動</Link>
+            <Link href="#" className="text-gray-300 hover:text-orange-500">我的日記</Link>
+            <Link href="#" className="text-gray-300 hover:text-orange-500">我的技能樹</Link>
             <Link href="#" className="text-gray-300 hover:text-orange-500">聚會活動</Link>
-            <Link href="#" className="text-gray-300 hover:text-orange-500">貼文</Link>
-            <Link href="#" className="text-gray-300 hover:text-orange-500">新手上路</Link>
-            <Link href="#" className="text-gray-300 hover:text-orange-500">交友見證</Link>
             <Link href="#" className="text-gray-300 hover:text-orange-500">關於我們</Link>
             <Button variant="outline" className="w-full text-gray-300 border-gray-600 hover:bg-gray-700">註冊 / 登入</Button>
           </nav>
@@ -240,12 +230,12 @@ export function CheckInFirstComponent() {
       )}
 
       <main className="flex-grow">
-        <div className="bg-gray-800 py-4">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <form onSubmit={(e) => { e.preventDefault(); handleSearch(searchQuery); }} className="flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="w-full max-w-[700px] mx-auto space-y-4">
+            <form onSubmit={(e) => { e.preventDefault(); handleSearch(searchQuery); }} className="flex items-center w-full">
               <Input
                 type="text"
-                placeholder="搜尋附近的活動或聚會..."
+                placeholder="搜尋附近的優惠活動..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-grow mr-2 bg-gray-700 text-gray-100 border-gray-600"
@@ -256,30 +246,27 @@ export function CheckInFirstComponent() {
               </Button>
             </form>
             {error && <p className="text-red-400 mt-2">{error}</p>}
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="h-[300px] w-full relative overflow-hidden rounded-lg shadow-lg">
-            <MapContainer
-              center={mapCenter}
-              zoom={zoom}
-              style={{ height: '100%', width: '100%' }}
-              zoomControl={false}
-              ref={mapRef}
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              {customIcon && <DynamicMarker position={mapCenter} icon={customIcon} />}
-            </MapContainer>
+            <div className="h-[500px] w-full relative overflow-hidden rounded-lg shadow-lg">
+              <MapContainer
+                center={mapCenter}
+                zoom={zoom}
+                style={{ height: '100%', width: '100%' }}
+                zoomControl={false}
+                ref={mapRef}
+              >
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                {customIcon && <DynamicMarker position={mapCenter} icon={customIcon} />}
+              </MapContainer>
+            </div>
           </div>
         </div>
 
         <section className="py-12 px-4 bg-gradient-to-r from-gray-800 to-gray-900">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">熱門聚會活動</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">為你推薦：附近的聚會活動</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
               {popularSpots.map((spot, index) => (
                 <SpotCard key={index} name={spot.name} image={spot.image} />
@@ -311,7 +298,7 @@ export function CheckInFirstComponent() {
 
           </div>
         </section>
-      </main>
+      </main >
 
       <footer className="bg-gray-800 py-8 px-4">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center">
@@ -323,6 +310,6 @@ export function CheckInFirstComponent() {
           </nav>
         </div>
       </footer>
-    </div>
+    </div >
   )
 }
