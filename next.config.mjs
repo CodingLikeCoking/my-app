@@ -9,9 +9,6 @@ const nextConfig = {
         unoptimized: true,
     },
     distDir: 'docs',
-    publicRuntimeConfig: {
-        basePath: isProd ? '/my-app' : '',
-    },
 };
 
 export default nextConfig;
