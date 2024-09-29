@@ -1,10 +1,12 @@
 "use client"
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { ChevronDown, ChevronRight, Menu, Search, User, X, MessageSquare, ThumbsUp } from "lucide-react"
+import { ChevronDown, Menu, Search, User, X, MessageSquare, ThumbsUp } from "lucide-react"
 import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
@@ -126,6 +128,7 @@ export function CheckInFirstComponent() {
         setMapCenter(location);
         setZoom(14);
       } catch (err) {
+        console.error(err);
         setError('Location not found. Please try a different search.');
       }
     }, 500),
