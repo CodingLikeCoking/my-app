@@ -135,12 +135,12 @@ export function CheckInFirstComponent() {
   );
 
   const popularSpots = [
-    { name: '派對房間', image: '/images/partyroom.jpg' },
-    { name: '網球聚會', image: '/images/tennis.jpg' },
-    { name: '劇本殺', image: '/images/script.jpg' },
-    { name: '桌遊咖啡廳', image: '/images/boardgame.jpg' },
-    { name: '密室逃脫', image: '/images/escape.jpg' },
-    { name: 'K歌之夜', image: '/images/karaoke.jpg' },
+    { name: '派對房間', image: 'images/partyroom.jpg' },
+    { name: '網球聚會', image: 'images/tennis.jpg' },
+    { name: '劇本殺', image: 'images/script.jpg' },
+    { name: '桌遊咖啡廳', image: 'images/boardgame.jpg' },
+    { name: '密室逃脫', image: 'images/escape.jpg' },
+    { name: 'K歌之夜', image: 'images/karaoke.jpg' },
   ];
 
 
@@ -150,7 +150,7 @@ export function CheckInFirstComponent() {
       user: { name: 'Alex', avatar: 'images/user.png' },
       timestamp: '2024-09-29 16:06',
       content: '今晚在旺角有超棒的派對房間活動！有人想一起來嗎？音樂、遊戲、小吃應有盡有...',
-      image: '/images/partyroom_user.jpg',
+      image: 'images/partyroom_user.jpg',
       recommendations: 15,
       comments: 7,
     },
@@ -159,16 +159,16 @@ export function CheckInFirstComponent() {
       user: { name: 'Sarah', avatar: '/images/user.png' },
       timestamp: '2024-09-29 15:44',
       content: '週末在維多利亞公園有網球聚會，歡迎各位球友來切磋球技！初學者也可以來學習哦～',
-      image: '/images/partyroom_user.jpg',
+      image: 'images/partyroom_user.jpg',
       recommendations: 8,
       comments: 3,
     },
     {
       id: 3,
-      user: { name: 'Jason', avatar: '/images/user.png' },
+      user: { name: 'Jason', avatar: 'images/user.png' },
       timestamp: '2024-09-29 15:31',
       content: '尖沙咀新開了一家超讚的劇本殺店！昨晚去玩了《無間道》主題，真的很刺激！推薦給大家～',
-      image: '/images/partyroom_user.jpg',
+      image: 'images/partyroom_user.jpg',
       recommendations: 20,
       comments: 12,
     },
