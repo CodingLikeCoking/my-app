@@ -6,9 +6,12 @@ const nextConfig = {
     basePath: isProd ? '/my-app' : '',
     assetPrefix: isProd ? '/my-app/' : '',
     images: {
-        unoptimized: true, // Disable Next.js image optimization
+        unoptimized: true,
     },
-    distDir: 'docs', // Specify docs as the output directory
+    distDir: 'docs',
+    publicRuntimeConfig: {
+        basePath: isProd ? '/my-app' : '',
+    },
 };
 
 export default nextConfig;

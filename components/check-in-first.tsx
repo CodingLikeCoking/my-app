@@ -16,6 +16,9 @@ import { useMap } from 'react-leaflet';
 
 // Import Leaflet CSS
 import 'leaflet/dist/leaflet.css'
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig() || {};
 
 // Dynamically import Leaflet components to avoid SSR issues
 const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false })
@@ -97,13 +100,23 @@ const PostCard = ({ post }: { post: any }) => (
 );
 
 export function CheckInFirstComponent() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [mapCenter, setMapCenter] = useState<LatLngExpression>([22.3193, 114.1694]) // Default to Hong Kong
-  const [zoom, setZoom] = useState(11)
-  const [error, setError] = useState<string | null>(null)
-  const [customIcon, setCustomIcon] = useState<any>(null)
-  const mapRef = useRef<any>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [mapCenter, setMapCenter] = useState<LatLngExpression>([22.3193, 114.1694]); // Default to Hong Kong
+  const [zoom, setZoom] = useState(11);
+  const [error, setError] = useState<string | null>(null);
+  const [customIcon, setCustomIcon] = useState<any>(null);
+  const mapRef = useRef<any>(null);
+
+  // Add the basePath state here
+  const [basePath, setBasePath] = useState('');
+
+  useEffect(() => {
+    // Ensure basePath is set on the client side
+    if (publicRuntimeConfig) {
+      setBasePath(publicRuntimeConfig.basePath || '');
+    }
+  }, [publicRuntimeConfig]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -114,11 +127,10 @@ export function CheckInFirstComponent() {
             iconSize: [25, 41],
             iconAnchor: [12, 41],
           })
-        )
-      })
+        );
+      });
     }
-  }, [])
-
+  }, []);
   // Debounce the handle search function to avoid excessive geocoding calls
   const handleSearch = useCallback(
     debounce(async (query) => {
@@ -136,39 +148,39 @@ export function CheckInFirstComponent() {
   );
 
   const popularSpots = [
-    { name: '派對房間', image: '/images/partyroom.jpg' },
-    { name: '網球聚會', image: '/images/tennis.jpg' },
-    { name: '劇本殺', image: '/images/script.jpg' },
-    { name: '桌遊咖啡廳', image: '/images/boardgame.jpg' },
-    { name: '密室逃脫', image: '/images/escape.jpg' },
-    { name: 'K歌之夜', image: '/images/karaoke.jpg' },
+    { name: '派對房間', image: `${basePath}/images/partyroom.jpg` },
+    { name: '網球聚會', image: `${basePath}/images/tennis.jpg` },
+    { name: '劇本殺', image: `${basePath}/images/script.jpg` },
+    { name: '桌遊咖啡廳', image: `${basePath}/images/boardgame.jpg` },
+    { name: '密室逃脫', image: `${basePath}/images/escape.jpg` },
+    { name: 'K歌之夜', image: `${basePath}/images/karaoke.jpg` },
   ];
 
   const posts = [
     {
       id: 1,
-      user: { name: 'Alex', avatar: '/images/user.png' },
+      user: { name: 'Alex', avatar: `${basePath}/images/user.png` },
       timestamp: '2024-09-29 16:06',
       content: '今晚在旺角有超棒的派對房間活動！有人想一起來嗎？音樂、遊戲、小吃應有盡有...',
-      image: '/images/partyroom_user.jpg',
+      image: `${basePath}/images/partyroom_user.jpg`,
       recommendations: 15,
       comments: 7,
     },
     {
       id: 2,
-      user: { name: 'Sarah', avatar: '/images/user.png' },
+      user: { name: 'Sarah', avatar: `${basePath}/images/user.png` },
       timestamp: '2024-09-29 15:44',
       content: '週末在維多利亞公園有網球聚會，歡迎各位球友來切磋球技！初學者也可以來學習哦～',
-      image: '/images/partyroom_user.jpg',
+      image: `${basePath}/images/partyroom_user.jpg`,
       recommendations: 8,
       comments: 3,
     },
     {
       id: 3,
-      user: { name: 'Jason', avatar: '/images/user.png' },
+      user: { name: 'Jason', avatar: `${basePath}/images/user.png` },
       timestamp: '2024-09-29 15:31',
       content: '尖沙咀新開了一家超讚的劇本殺店！昨晚去玩了《無間道》主題，真的很刺激！推薦給大家～',
-      image: '/images/partyroom_user.jpg',
+      image: `${basePath}/images/partyroom_user.jpg`,
       recommendations: 20,
       comments: 12,
     },
@@ -181,7 +193,11 @@ export function CheckInFirstComponent() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0">
-                <img className="h-10 w-auto" src="/images/logo.jpg" alt="Check-in First" />
+                <img
+                  className="h-10 w-auto"
+                  src={`${basePath}/images/logo.jpg`}
+                  alt="Check-in First"
+                />
               </Link>
             </div>
             <nav className="hidden md:flex space-x-4">
