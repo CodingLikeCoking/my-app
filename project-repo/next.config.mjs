@@ -4,7 +4,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
     output: 'export',
     basePath: isProd ? '/my-app/project-repo' : '',
-    assetPrefix: isProd ? '/my-app/project-repo' : '',
+    assetPrefix: isProd ? '/my-app/project-repo/' : '',
     images: {
         unoptimized: true, // Disable Next.js image optimization
     },
