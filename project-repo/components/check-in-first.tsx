@@ -10,6 +10,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { LatLngExpression } from 'leaflet'
 import debounce from 'lodash.debounce'
+import { useMap } from 'react-leaflet';
 
 // Import Leaflet CSS
 import 'leaflet/dist/leaflet.css'
@@ -18,7 +19,6 @@ import 'leaflet/dist/leaflet.css'
 const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false })
 const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false })
 const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false })
-const useMap = dynamic(() => import('react-leaflet').then((mod) => mod.useMap), { ssr: false })
 
 // Dynamic Marker component
 function DynamicMarker({ position, icon }: { position: LatLngExpression; icon: any }) {
