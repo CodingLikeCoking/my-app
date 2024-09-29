@@ -97,9 +97,9 @@ export function Eatgether() {
               </Link>
               <div className="hidden md:block ml-10 flex items-baseline space-x-4">
                 <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="找聚會 派對、運動、桌遊..."
+                  <Input 
+                    type="text" 
+                    placeholder="找聚會 派對、運動、桌遊..." 
                     className="w-64 pl-10 bg-gray-700 text-gray-100 border-gray-600"
                   />
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
@@ -139,9 +139,9 @@ export function Eatgether() {
       {isMenuOpen && (
         <div className="md:hidden bg-gray-800 p-4 shadow-md">
           <nav className="flex flex-col space-y-2">
-            <Input
-              type="text"
-              placeholder="找聚會 派對、運動、桌遊..."
+            <Input 
+              type="text" 
+              placeholder="找聚會 派對、運動、桌遊..." 
               className="mb-2 bg-gray-700 text-gray-100 border-gray-600"
             />
             <Link href="#" className="text-gray-300 hover:text-orange-500">聚會活動</Link>
