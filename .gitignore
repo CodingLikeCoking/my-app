@@ -2,6 +2,8 @@
 
 # dependencies
 /project-repo/node_modules
+/node_modules
+
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -11,10 +13,12 @@
 
 # next.js
 /project-repo/.next/
+.next/
 /.next/
 
 # production
 /project-repo/build/
+build/
 /build/
 
 # misc
