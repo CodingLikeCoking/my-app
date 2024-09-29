@@ -45,8 +45,7 @@ const geocode = async (query: string): Promise<LatLngExpression> => {
   throw new Error('Location not found')
 }
 
-// Extract SpotCard component for popular spots
-const SpotCard = ({ name, image }: { name: string, image: string }) => (
+const SpotCard = ({ name, image }) => (
   <div className="flex flex-col items-center">
     <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
       <Image
@@ -61,9 +60,8 @@ const SpotCard = ({ name, image }: { name: string, image: string }) => (
   </div>
 );
 
-// Extract PostCard component for posts
-const PostCard = ({ post }: { post: any }) => (
-  <div key={post.id} className="bg-gray-800 rounded-lg shadow-md p-4">
+const PostCard = ({ post }) => (
+  <div className="bg-gray-800 rounded-lg shadow-md p-4">
     <div className="flex items-center mb-2">
       <Image
         src={post.user.avatar}
@@ -95,6 +93,7 @@ const PostCard = ({ post }: { post: any }) => (
     </div>
   </div>
 );
+
 
 export function CheckInFirstComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
