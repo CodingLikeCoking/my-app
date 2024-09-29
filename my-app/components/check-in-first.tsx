@@ -295,8 +295,7 @@ export function CheckInFirstComponent() {
               <TabsList className="grid w-full grid-cols-6 mb-4 bg-gray-800">
                 <TabsTrigger value="latest" className="data-[state=active]:bg-gray-700">最新</TabsTrigger>
                 <TabsTrigger value="popular" className="data-[state=active]:bg-gray-700">熱門</TabsTrigger>
-                <TabsTrigger value="private" className="data-[state=active]:bg-gray-700">私密</Tab
-sTrigger>
+                <TabsTrigger value="private" className="data-[state=active]:bg-gray-700">私密</TabsTrigger>  {/* Fixed closing tag */}
                 <TabsTrigger value="friends" className="data-[state=active]:bg-gray-700">好友</TabsTrigger>
                 <TabsTrigger value="following" className="data-[state=active]:bg-gray-700">追蹤</TabsTrigger>
                 <TabsTrigger value="saved" className="data-[state=active]:bg-gray-700">收藏</TabsTrigger>
@@ -307,20 +306,9 @@ sTrigger>
                     <PostCard key={post.id} post={post} />
                   ))}
                 </div>
-                <div className="mt-6 flex justify-center">
-                  <Button variant="outline" className="mr-2 bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700">
-                    <ChevronRight className="w-4 h-4 mr-2" />
-                    更多熱門貼文
-                  </Button>
-                  <div className="flex items-center space-x-2 text-gray-300">
-                    <span>1 / 5</span>
-                    <Button variant="outline" size="icon" className="bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700">
-                      <ChevronRight className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
               </TabsContent>
             </Tabs>
+
           </div>
         </section>
       </main>
